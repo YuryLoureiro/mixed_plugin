@@ -1,0 +1,91 @@
+<!--{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load custom_links %}
+{% load helpers %}
+{% load plugins %}
+{% load render_table from django_tables2 %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'plugins:managedhcp:MACAddList_list' %}">Ir para lista de nodes</a></li>
+{% endblock %}
+
+
+{% block controls %}
+<div class="pull-right noprint">
+    {% if perms.managedhcp.change_MACAddList %}
+    <a href="{% url 'plugins:managedhcp:MACAddList_add' %}?routing_policy={{ object.pk }}" class="btn btn-success">
+        <span class="mdi mdi-plus-thick" aria-hidden="true"></span> Add MAC Address
+    </a>
+    {% endif %}
+    {% if perms.managedhcp.change_MACAddList %}
+    <a href="{% url 'plugins:managedhcp:MACAddList_edit' pk=object.pk %}" class="btn btn-warning">
+        <span class="mdi mdi-pencil" aria-hidden="true"></span> Edit
+    </a>
+    {% endif %}
+    {% if perms.managedhcp.delete_MACAddList %}
+    <a href="{% url 'plugins:managedhcp:MACAddList_delete' pk=object.pk %}" class="btn btn-danger">
+        <span class="mdi mdi-trash-can-outline" aria-hidden="true"></span> Delete
+    </a>
+    {% endif %}
+</div>
+{% endblock controls %}
+
+{% block subtitle %}
+{% endblock %}
+
+{% block extra_tabs %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="details">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>Informações da Entrada</strong>
+                                </div>
+                                <table class="table table-hover panel-body attr-table">
+                                    <tr>
+                                        <td>Endereço MAC</td>
+                                        <td>{{ object.mac }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load custom_links %}
+{% load helpers %}
+{% load plugins %}
+-->
+<!--{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'plugins:managedhcp:dhcpip_list' %}">Ir para lista de endereços virtuais</a></li>
+{% endblock %}
+
+{% block subtitle %}
+{% endblock %}
+
+{% block extra_tabs %}{% endblock %}-->
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load custom_links %}
+{% load helpers %}
+{% load plugins %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'plugins:managedhcp:macadd_list' %}">Ir para lista de endereços virtuais</a></li>
+{% endblock %}
+
+{% block subtitle %}
+{% endblock %}
+
+{% block extra_tabs %}{% endblock %}

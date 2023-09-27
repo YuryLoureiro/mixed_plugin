@@ -1,0 +1,83 @@
+{% extends 'generic/object.html' %}
+{% load buttons %}
+{% load custom_links %}
+{% load helpers %}
+{% load plugins %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item"><a href="{% url 'plugins:bigipnetbox:irule_list' %}">Ir para lista de irules</a></li>
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'bigipnetbox/css/prism.css' %}">
+{% endblock %} 
+
+
+{% block controls %}
+<div class="pull-right noprint">
+    {% if perms.bigipnetbox.change_irule %}
+    <a href="{% url 'plugins:bigipnetbox:irule_add' %}?routing_policy={{ object.pk }}" class="btn btn-success">
+        <span class="mdi mdi-plus-thick" aria-hidden="true"></span> Add iRule
+    </a>
+    {% endif %}
+    {% if perms.bigipnetbox.change_irule %}
+    <a href="{% url 'plugins:bigipnetbox:irule_edit' pk=object.pk %}" class="btn btn-warning">
+        <span class="mdi mdi-pencil" aria-hidden="true"></span> Edit
+    </a>
+    {% endif %}
+    {% if perms.bigipnetbox.delete_irule %}
+    <a href="{% url 'plugins:bigipnetbox:irule_delete' pk=object.pk %}" class="btn btn-danger">
+        <span class="mdi mdi-trash-can-outline" aria-hidden="true"></span> Delete
+    </a>
+    {% endif %}
+</div>
+{% endblock controls %}
+
+{% block subtitle %}
+{% endblock %}
+
+{% block extra_tabs %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="details">
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Informações da Regra</strong>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-hover panel-body attr-table">
+                                    <tr>
+                                        <td>Nome</td>
+                                        <td>{{ object.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Partição</td>
+                                        <td>{{ object.partition_id }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Definição da iRule</strong>
+                            </div>
+                            <div class="card-body">
+                                <font size=4><pre><code class="language-Tcl">{{ object.definition }}</code></pre></font>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'bigipnetbox/js/prism.js' %}"></script>
+{% endblock javascript %}
